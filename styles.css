@@ -12,11 +12,11 @@ body {
     background-color: #1f2937;
     color: #ffffff;
     padding: 20px;
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
-    overflow-y: auto;
+    box-sizing: border-box;
+    position: fixed; /* Keeps the menu fixed in place */
+    height: 100%; /* Ensures the menu takes full height */
+    overflow-y: auto; /* Allows scrolling if content overflows */
     border-right: 2px solid #2d3748;
-    position: fixed; /* Keep menu fixed on the left */
-    height: 100%; /* Ensure it takes full height */
 }
 
 #menu h2 {
@@ -44,17 +44,17 @@ body {
 #content {
     margin-left: 25%; /* Space for the menu */
     padding: 20px;
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    box-sizing: border-box;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    overflow-y: auto;
+    height: 100vh; /* Ensures content area takes full height */
+    overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
 @media (max-width: 768px) {
     #menu {
         width: 100%;
-        position: static; /* Allow menu to scroll with content on small screens */
+        position: static; /* Allows menu to scroll with content on small screens */
     }
     #content {
         margin-left: 0;
