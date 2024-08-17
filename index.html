@@ -9,32 +9,38 @@
 <body>
     <div id="menu">
         <h2>My GitHub Projects</h2>
-        <a href="#" onclick="loadContent('0.welcome.html')">Welcome</a>
-        <a href="#" onclick="loadContent('1.Introduction.html')">Introduction</a>
-        <a href="#" onclick="loadContent('2.simple.loader.html')">Simple Loader</a>
+        <a href="#" onclick="showSection('welcome')">Welcome</a>
+        <a href="#" onclick="showSection('introduction')">Introduction</a>
+        <a href="#" onclick="showSection('simpleLoader')">Simple Loader</a>
     </div>
     <div id="content">
-        <!-- Default content loaded here -->
+        <div id="welcome" class="content-section">
+            <h1>Welcome to My GitHub Projects</h1>
+            <p>This is the welcome page content.</p>
+        </div>
+        <div id="introduction" class="content-section" style="display:none;">
+            <h1>Introduction</h1>
+            <p>This is the introduction page content.</p>
+        </div>
+        <div id="simpleLoader" class="content-section" style="display:none;">
+            <h1>Simple Loader</h1>
+            <p>This is the simple loader page content.</p>
+        </div>
     </div>
 
     <script>
-        function loadContent(url) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('content').innerHTML = data;
-                })
-                .catch(error => {
-                    document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
-                });
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
         }
 
-        // Load the default content (welcome.html) on page load
+        // Show the default section on page load
         window.onload = function() {
-            loadContent('0.welcome.html');
+            showSection('welcome');
         };
     </script>
 </body>
