@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Loader - MalDefender</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        h1 {
+            color: #2d3748;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        code {
+            background-color: #edf2f7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #2d3748;
+        }
+        pre {
+            background-color: #edf2f7;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Loader for MalDefender</h1>
+    <p>
+        The Simple Loader component is an essential part of the MalDefender project. It demonstrates the process of dynamically loading a DLL into memory, which is vital for executing various functionalities within the project.
+    </p>
+    <p>
+        Key aspects of the Simple Loader include:
+    </p>
+    <ul>
+        <li>Loading DLLs from specified paths or URLs.</li>
+        <li>Calling functions within the DLL safely.</li>
+        <li>Managing memory efficiently.</li>
+    </ul>
+    <p>
+        Below is a code snippet showing the basic implementation of the loader:
+    </p>
+    <pre><code>
+// Sample code for loading a DLL in C/C++
+#include <windows.h>
+
+int main() {
+    HMODULE hModule = LoadLibrary("example.dll");
+    if (hModule != NULL) {
+        // Perform operations with the DLL
+        FreeLibrary(hModule);
+    }
+    return 0;
+}
+    </code></pre>
+    <p>
+        For the complete implementation and additional details, check out the GitHub repository associated with MalDefender.
+    </p>
+</body>
+</html>
