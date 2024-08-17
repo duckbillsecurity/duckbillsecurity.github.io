@@ -9,40 +9,12 @@
 <body>
     <div id="menu">
         <h2>My GitHub Projects</h2>
-        <a href="#" onclick="showSection('welcome')">Welcome</a>
-        <a href="#" onclick="showSection('introduction')">Introduction</a>
-        <a href="#" onclick="showSection('simpleLoader')">Simple Loader</a>
+        <a href="0.welcome.html" target="contentFrame">Welcome</a>
+        <a href="1.Introduction.html" target="contentFrame">Introduction</a>
+        <a href="2.simple.loader.html" target="contentFrame">Simple Loader</a>
     </div>
-    <div id="content">
-        <div id="welcome" class="content-section">
-            <h1>Welcome to My GitHub Projects</h1>
-            <p>This is the welcome page content.</p>
-        </div>
-        <div id="introduction" class="content-section" style="display:none;">
-            <h1>Introduction</h1>
-            <p>This is the introduction page content.</p>
-        </div>
-        <div id="simpleLoader" class="content-section" style="display:none;">
-            <h1>Simple Loader</h1>
-            <p>This is the simple loader page content.</p>
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
-        }
-
-        // Show the default section on page load
-        window.onload = function() {
-            showSection('welcome');
-        };
-    </script>
+    <iframe id="content" name="contentFrame" src="0.welcome.html" frameborder="0"></iframe>
 </body>
 </html>
+
 
