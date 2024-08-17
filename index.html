@@ -3,72 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MalDefender - GitHub Projects</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-        #menu {
-            width: 25%;
-            background-color: #1f2937;
-            color: #ffffff;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            border-right: 2px solid #2d3748;
-        }
-        #menu h2 {
-            font-size: 1.75em;
-            margin-bottom: 20px;
-            color: #e2e8f0;
-        }
-        #menu a {
-            text-decoration: none;
-            color: #cbd5e1;
-            display: block;
-            padding: 12px 0;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-        }
-        #menu a:hover {
-            background-color: #4a5568;
-            color: #ffffff;
-        }
-        #content {
-            width: 75%;
-            padding: 20px;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            transition: padding 0.3s;
-        }
-        #content h1 {
-            color: #2d3748;
-            margin-top: 0;
-        }
-        #content p {
-            line-height: 1.8;
-            color: #4a5568;
-        }
-    </style>
+    <title>My GitHub Projects</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="menu">
-        <h2>MalDefender Projects</h2>
-        <a onclick="loadContent('1.Introduction.html')">Introduction</a>
-        <a onclick="loadContent('2.simple.loader.html')">Simple Loader</a>
+        <h2>My GitHub Projects</h2>
+        <a onclick="loadContent('welcome.html')">Welcome</a>
+        <a onclick="loadContent('https://github.com/duckbillsecurity/KQL')">KQL Project</a>
+        <a onclick="loadContent('https://github.com/duckbillsecurity/VirusTotalQuery')">VirusTotalQuery Project</a>
     </div>
     <div id="content">
-        <h1>Welcome to MalDefender</h1>
-        <p>Welcome to the MalDefender project page! Click on the links to the left to view detailed information about the different aspects of this project.</p>
+        <p>Welcome to my GitHub Projects page! Click on the links to the left to view the details.</p>
     </div>
 
     <script>
@@ -79,7 +25,7 @@
                     return response.text();
                 })
                 .then(data => {
-                    document.getElementById('content').innerHTML = data;
+                    document.getElementById('content').innerHTML = `<pre>${data}</pre>`;
                 })
                 .catch(error => {
                     document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
@@ -88,7 +34,5 @@
     </script>
 </body>
 </html>
-
-
 
 
