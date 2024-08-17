@@ -43,10 +43,9 @@ body {
 
 #content {
     margin-left: 25%; /* Space for the menu */
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    height: 100vh; /* Ensures content area takes full height */
-    overflow: hidden;
+    width: 75%; /* Ensures the iframe takes the remaining width */
+    height: 100vh; /* Ensures the iframe takes full height */
+    border: none; /* Removes default border */
+    box-sizing: border-box; /* Ensures padding and border are included in the width and height */
 }
 
