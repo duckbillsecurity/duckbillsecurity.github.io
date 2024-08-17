@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction - MalDefender</title>
+    <title>Basics - MalDefender</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,22 +18,85 @@
             color: #2d3748;
             margin-top: 0;
         }
+        h2 {
+            color: #4a5568;
+            margin-top: 20px;
+        }
         p {
             line-height: 1.8;
             color: #4a5568;
         }
+        ul {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Introduction to MalDefender</h1>
+    <h1>Basics of Running Malicious Code on Windows Systems</h1>
+    
+    <h2>Introduction</h2>
     <p>
-        MalDefender is a comprehensive cybersecurity project aimed at defending against various types of malicious threats. Our goal is to provide advanced tools and techniques to protect systems and networks from potential attacks.
+        This section provides an overview of the fundamental concepts and techniques used to understand and analyze how malicious code operates on Windows systems. It aims to equip you with the knowledge needed to identify and counteract various attack methods.
     </p>
+    
+    <h2>Windows PE (Portable Executable) Files</h2>
     <p>
-        This introduction outlines the core features and objectives of MalDefender. Explore the project to learn more about its components, functionalities, and how it addresses critical security challenges.
+        Windows PE (Portable Executable) files are the standard format for executables, object code, and DLLs in Windows. They encapsulate code, data, and resources into a single file. Understanding the PE format is crucial for analyzing how malicious code is structured and executed on Windows systems.
     </p>
+    
+    <h2>Running Malicious Shellcode</h2>
     <p>
-        For detailed information and resources, visit our GitHub repository linked on the main page.
+        The process of running malicious shellcode involves several key steps:
+    </p>
+    <ul>
+        <li><strong>Allocating Memory:</strong> Allocating a block of memory within the target process to store the shellcode.</li>
+        <li><strong>Copying Shellcode:</strong> Copying the shellcode into the allocated memory space.</li>
+        <li><strong>Executing Shellcode:</strong> Changing memory protection settings to allow execution and then running the shellcode.</li>
+    </ul>
+    <p>
+        These steps form the basis for how shellcode is injected and executed in a target environment.
+    </p>
+
+    <h2>Processes vs. Threads</h2>
+    <p>
+        In Windows, a process is a self-contained execution environment with its own memory space, while a thread is a component of a process that performs tasks. Understanding the difference is important because malicious code may exploit either processes or threads to achieve its objectives.
+    </p>
+
+    <h2>Sections of a PE File</h2>
+    <p>
+        A PE file is divided into several sections, each serving a specific function:
+    </p>
+    <ul>
+        <li><strong>.text:</strong> Contains the executable code. This section is critical for understanding where shellcode is placed and executed.</li>
+        <li><strong>.data:</strong> Stores initialized data used by the program.</li>
+        <li><strong>.bss:</strong> Holds uninitialized data that the program will initialize at runtime.</li>
+        <li><strong>.rdata:</strong> Contains read-only data such as constants and debug information.</li>
+    </ul>
+    <p>
+        Each section plays a role in how the executable operates and can be targeted by attackers to hide or execute malicious code.
+    </p>
+
+    <h2>Techniques for Evasion</h2>
+    <p>
+        Malicious actors use various techniques to evade detection, including:
+    </p>
+    <ul>
+        <li><strong>Process Hollowing:</strong> Replacing the memory of a legitimate process with malicious code.</li>
+        <li><strong>Thread Injection:</strong> Creating threads within a process to execute malicious code.</li>
+        <li><strong>Hoax Parent Process:</strong> Manipulating the process hierarchy to avoid detection by security software.</li>
+    </ul>
+    <p>
+        These techniques make it more challenging to detect and analyze malicious activities.
+    </p>
+
+    <h2>Detection and Analysis</h2>
+    <p>
+        This project will evaluate detection methods using Windows Defender and Defender for Endpoint, create detection rules for YARA and Sigma, and perform analysis with tools like Ghidra, Process Hacker, and Wireshark. Understanding these aspects will help in developing effective defenses against advanced threats.
+    </p>
+
+    <p>
+        Explore the rest of the MalDefender project to learn more about these techniques and how to detect and counteract them.
     </p>
 </body>
 </html>
+
