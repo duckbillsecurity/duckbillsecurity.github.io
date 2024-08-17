@@ -1,10 +1,15 @@
-body {
+/* Reset default margins and paddings */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f2f5;
     display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
 #menu {
@@ -12,17 +17,13 @@ body {
     background-color: #1f2937;
     color: #ffffff;
     padding: 20px;
-    box-sizing: border-box;
-    position: fixed; /* Keeps the menu fixed in place */
-    height: 100%; /* Ensures the menu takes full height */
-    overflow-y: auto; /* Allows scrolling if content overflows */
-    border-right: 2px solid #2d3748;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 #menu h2 {
     font-size: 1.75em;
     margin-bottom: 20px;
-    color: #e2e8f0;
 }
 
 #menu a {
@@ -42,10 +43,11 @@ body {
 }
 
 #content {
-    margin-left: 25%; /* Space for the menu */
-    width: 75%; /* Ensures the iframe takes the remaining width */
-    height: 100vh; /* Ensures the iframe takes full height */
-    border: none; /* Removes default border */
-    box-sizing: border-box; /* Ensures padding and border are included in the width and height */
+    width: 75%;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto;
+    border: none;
+    height: 100vh;
 }
 
