@@ -7,20 +7,37 @@
     <style>
         body {
             margin: 0;
-        }
-        frameset {
+            font-family: Arial, sans-serif;
+            display: flex;
             height: 100vh;
         }
-        frame {
+        #menu {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #content {
+            width: 80%;
             border: none;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+        a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <frameset cols="20%, 80%">
-        <frame src="menu.html" name="menuFrame">
-        <frame src="welcome.html" name="contentFrame">
-    </frameset>
+    <div id="menu">
+        <a href="https://www.bbc.com" target="contentFrame">BBC News</a>
+        <a href="https://www.cnn.com" target="contentFrame">CNN News</a>
+    </div>
+    <iframe id="content" name="contentFrame" src="welcome.html"></iframe>
 </body>
 </html>
 
