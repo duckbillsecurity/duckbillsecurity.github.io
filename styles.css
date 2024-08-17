@@ -1,122 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MALD3V</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        #menu {
-            width: 250px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            padding-top: 20px;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
+#menu {
+    width: 20%;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
 
-        #menu h1 {
-            text-align: center;
-            margin: 0;
-            padding: 10px;
-        }
+#menu h1 {
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
 
-        #menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #444;
-        }
+#menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
 
-        #menu a:hover {
-            background-color: #575757;
-        }
+#menu a:hover {
+    background-color: #575757;
+}
 
-        #menuToggle {
-            display: none;
-            font-size: 30px;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
+#menuToggle {
+    display: none;
+    font-size: 30px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
+iframe {
+    width: 80%;
+    height: 100%;
+    border: none;
+    transition: width 0.3s ease;
+}
 
-        /* Media Query for Mobile */
-        @media (max-width: 768px) {
-            #menuToggle {
-                display: block;
-            }
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
 
-            #menu {
-                transform: translateX(-100%);
-                position: absolute;
-                z-index: 999;
-                width: 100%;
-            }
+    #menuToggle {
+        display: block;
+    }
 
-            #menu.show {
-                transform: translateX(0);
-            }
+    #menu {
+        transform: translateX(-100%);
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        height: calc(100vh - 50px);
+    }
 
-            iframe {
-                width: 100%;
-                height: calc(100vh - 50px);
-                margin-top: 50px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="menuToggle">&#9776;</div>
-    <div id="menu">
-        <h1><a href="0.welcome.html" target="contentFrame">MALD3V</a></h1>
-        <a href="1.Basics.html" target="contentFrame">Basics</a>
-        <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
-        <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
-        <a href="4.Simple.Loader.html" target="contentFrame">Simple Loader</a>
-    </div>
-    <iframe id="content" name="contentFrame" src="0.welcome.html"></iframe>
+    #menu.show {
+        transform: translateX(0);
+    }
 
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const menu = document.getElementById('menu');
-
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('show');
-        });
-
-        // Close menu after clicking a link on mobile
-        document.querySelectorAll('#menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('show');
-            });
-        });
-    </script>
-</body>
-</html>
+    iframe {
+        width: 100%;
+        height: calc(100vh - 50px);
+        margin-top: 50px;
+    }
+}
 
