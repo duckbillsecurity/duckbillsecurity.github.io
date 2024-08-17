@@ -51,14 +51,7 @@ body {
     overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
-@media (max-width: 768px) {
-    #menu {
-        width: 100%;
-        position: static; /* Allows menu to scroll with content on small screens */
-    }
-    #content {
-        margin-left: 0;
-        width: 100%;
-    }
+.content-section {
+    display: none; /* Hide all sections by default */
 }
 
