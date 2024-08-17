@@ -66,7 +66,8 @@
                     return response.text();
                 })
                 .then(data => {
-                    document.getElementById('content').innerHTML = `<pre>${data}</pre>`;
+                    // Insert the content directly as HTML, without the <pre> tag
+                    document.getElementById('content').innerHTML = data;
                 })
                 .catch(error => {
                     document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
@@ -75,6 +76,7 @@
     </script>
 </body>
 </html>
+
 
 
 
