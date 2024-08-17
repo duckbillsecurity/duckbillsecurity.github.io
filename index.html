@@ -9,9 +9,11 @@
 <body>
     <div id="menu">
         <h2>My GitHub Projects</h2>
-        <a onclick="loadContent('welcome.html')">Welcome</a>
-        <a onclick="loadContent('https://github.com/duckbillsecurity/KQL')">KQL Project</a>
-        <a onclick="loadContent('https://github.com/duckbillsecurity/VirusTotalQuery')">VirusTotalQuery Project</a>
+        <a href="0.welcome.html" onclick="loadContent('0.welcome.html')">Welcome</a>
+        <a href="1.Introduction.html" onclick="loadContent('1.Introduction.html')">Introduction</a>
+        <a href="2.simple.loader.html" onclick="loadContent('2.simple.loader.html')">Simple Loader</a>
+        <a href="https://github.com/duckbillsecurity/KQL" target="contentFrame">KQL Project</a>
+        <a href="https://github.com/duckbillsecurity/VirusTotalQuery" target="contentFrame">VirusTotalQuery Project</a>
     </div>
     <div id="content">
         <p>Welcome to my GitHub Projects page! Click on the links to the left to view the details.</p>
@@ -19,17 +21,21 @@
 
     <script>
         function loadContent(url) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('content').innerHTML = `<pre>${data}</pre>`;
-                })
-                .catch(error => {
-                    document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
-                });
+            if (url.startsWith('http')) {
+                window.open(url, 'contentFrame');
+            } else {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('content').innerHTML = data;
+                    })
+                    .catch(error => {
+                        document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
+                    });
+            }
         }
     </script>
 </body>
