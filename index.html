@@ -31,6 +31,11 @@
                     document.getElementById('content').innerHTML = `<p>Error loading content: ${error.message}</p>`;
                 });
         }
+
+        // Load the default content (welcome.html) on page load
+        window.onload = function() {
+            loadContent('0.welcome.html');
+        };
     </script>
 </body>
 </html>
