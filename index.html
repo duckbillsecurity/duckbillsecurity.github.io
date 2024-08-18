@@ -16,13 +16,21 @@
         &#9776;
     </div>
     <div id="menu">
-        <h1><a href="0.welcome.html" target="contentFrame">MALD3F3ND</a></h1>
-        <a href="1.Basics.html" target="contentFrame">Basics</a>
-        <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
-        <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
-        <a href="4.Simple.Loader.html" target="contentFrame">Simple Loader</a>
+        <h1><a href="welcome.html" target="contentFrame">MALD3F3ND</a></h1>
+
+        <!-- Parent Link for Shellcode Injection -->
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Shellcode Injection</a>
+            <div class="dropdown-content">
+                <a href="1.Basics.html" target="contentFrame">Basics</a>
+                <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
+                <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
+                <a href="4.Simple.Loader.html" target="contentFrame">Simple Loader</a>
+            </div>
+        </div>
     </div>
-    <iframe id="content" name="contentFrame" src="0.welcome.html"></iframe>
+
+    <iframe id="content" name="contentFrame" src="welcome.html"></iframe>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
