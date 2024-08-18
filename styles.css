@@ -20,6 +20,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 10px;
+    padding-top: 50px; /* Add padding to push down the title */
 }
 
 #menu a {
@@ -102,6 +103,7 @@ iframe {
         z-index: 999;
         width: 100%;
         height: calc(100vh - 50px);
+        padding-top: 60px; /* Push down the entire menu content to avoid overlap */
     }
 
     #menu.show {
