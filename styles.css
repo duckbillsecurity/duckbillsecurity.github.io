@@ -17,6 +17,7 @@ body {
     left: 0;
     height: 100%;
     overflow-y: auto;
+    z-index: 1; /* Ensure menu is on top */
 }
 
 #menu h1 {
@@ -84,7 +85,7 @@ body {
     #logo {
         width: 30px;
         height: 30px;
-        margin-left: 10px;
+        margin-right: 10px; /* Adjust margin for logo */
     }
 
     #main {
@@ -103,10 +104,13 @@ body {
 #main {
     width: 80%;
     margin-left: 20%;
+    overflow: hidden; /* Ensure iframe doesn't extend beyond the container */
 }
 
 iframe {
     width: 100%;
     height: 100%;
     border: none;
+    z-index: 0; /* Ensure iframe is behind the menu */
 }
+
