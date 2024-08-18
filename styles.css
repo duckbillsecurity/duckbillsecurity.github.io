@@ -48,12 +48,14 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Ensures space between the icon and logo */
+    width: 100%;
 }
 
 #menuLogo {
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin-left: 10px; /* Adds spacing between the hamburger and logo */
 }
 
 iframe {
