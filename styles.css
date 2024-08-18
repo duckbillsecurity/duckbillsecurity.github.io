@@ -13,7 +13,6 @@ body {
     padding-top: 20px;
     position: relative;
     z-index: 1;
-    transition: transform 0.3s ease;
 }
 
 #menu h1 {
@@ -36,43 +35,35 @@ body {
 }
 
 #menuToggle {
-    display: none;
-    font-size: 30px;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensures space between the icon and logo */
-    width: 100%;
+    display: none; /* Initially hidden */
 }
 
-#menuLogo {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px; /* Adds spacing between the hamburger and logo */
-}
-
-iframe {
-    width: 80%;
-    height: 100%;
-    border: none;
-    transition: width 0.3s ease;
-}
-
-/* Media Query for Mobile */
+/* Mobile-specific styles */
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
+    #menuToggle {
+        display: flex; /* Show hamburger menu only on mobile */
+        font-size: 30px;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
-    #menuToggle {
-        display: flex;
+    #menuLogo {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    body {
+        flex-direction: column;
     }
 
     #menu {
@@ -90,7 +81,13 @@ iframe {
     iframe {
         width: 100%;
         height: calc(100vh - 50px);
-        margin-top: 50px;
+        border: none;
     }
 }
 
+iframe {
+    width: 80%;
+    height: 100%;
+    border: none;
+    margin-top: 0; /* Ensures iframe content isn't blocked */
+}
