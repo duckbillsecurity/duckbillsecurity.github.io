@@ -19,14 +19,14 @@
         <h1><a href="welcome.html" target="contentFrame">MALD3F3ND</a></h1>
 
         <!-- Parent Link for Shellcode Injection -->
-        <div class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Shellcode Injection</a>
-            <div class="dropdown-content">
-                <a href="1.Basics.html" target="contentFrame">Basics</a>
-                <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
-                <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
-                <a href="4.Simple.Loader.html" target="contentFrame">Simple Loader</a>
-            </div>
+        <div class="parent-link" onclick="toggleDropdown('shellcodeDropdown')">
+            <span>Shellcode Injection &#x25BC;</span>
+        </div>
+        <div id="shellcodeDropdown" class="dropdown-content">
+            <a href="1.Basics.html" target="contentFrame">Basics</a>
+            <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
+            <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
+            <a href="4.Simple.Loader.html" target="contentFrame">Simple Loader</a>
         </div>
     </div>
 
@@ -46,6 +46,12 @@
                 menu.classList.remove('show');
             });
         });
+
+        // Function to toggle dropdown visibility
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.classList.toggle('show');
+        }
     </script>
 </body>
 </html>
