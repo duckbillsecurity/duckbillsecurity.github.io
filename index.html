@@ -19,7 +19,7 @@
         <h1><a href="welcome.html" target="contentFrame">MALD3F3ND</a></h1>
 
         <!-- Parent Link for Shellcode Injection -->
-        <div class="parent-link" onclick="toggleDropdown('shellcodeDropdown')">
+        <div class="parent-link" onclick="toggleDropdown('shellcodeDropdown', this)">
             <span>Shellcode Injection &#x25BC;</span>
         </div>
         <div id="shellcodeDropdown" class="dropdown-content">
@@ -48,9 +48,16 @@
         });
 
         // Function to toggle dropdown visibility
-        function toggleDropdown(dropdownId) {
+        function toggleDropdown(dropdownId, element) {
             const dropdown = document.getElementById(dropdownId);
             dropdown.classList.toggle('show');
+
+            // Toggle arrow direction
+            if (dropdown.classList.contains('show')) {
+                element.querySelector('span').innerHTML = "Shellcode Injection &#x25B2;"; // Up arrow
+            } else {
+                element.querySelector('span').innerHTML = "Shellcode Injection &#x25BC;"; // Down arrow
+            }
         }
     </script>
 </body>
