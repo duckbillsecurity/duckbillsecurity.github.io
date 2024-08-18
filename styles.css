@@ -92,3 +92,9 @@ iframe {
     }
 }
 
+/* Hide menu toggle and logo on PC */
+@media (min-width: 769px) {
+    #menuToggle {
+        display: none;
+    }
+}
