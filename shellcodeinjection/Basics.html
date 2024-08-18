@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics - MALD3F3ND</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        h1 {
+            color: #2d3748;
+            margin-top: 0;
+        }
+        h2 {
+            color: #4a5568;
+            margin-top: 20px;
+        }
+        p {
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        ul {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basics of Running Malicious Code on Windows Systems</h1>
+    
+    <h2>Introduction</h2>
+    <p>
+        This section covers the fundamental concepts and techniques used by malicious actors to run unauthorized code on Windows systems. Understanding these basics is crucial for developing effective defenses against such attacks.
+    </p>
+    
+    <h2>Windows PE (Portable Executable) Files</h2>
+    <p>
+        A Windows PE (Portable Executable) file is the standard file format for executables, object code, and DLLs in Windows operating systems. It combines executable code, data, and resources into a single file. The PE format is essential for understanding how malicious code is executed on Windows systems.
+    </p>
+    
+    <h2>Running Malicious Shellcode</h2>
+    <p>
+        Running malicious shellcode involves several critical steps. Here are the basics:
+    </p>
+    <ul>
+        <li><strong>Allocating Memory:</strong> The shellcode must first allocate memory in the target process to hold the code.</li>
+        <li><strong>Copying Shellcode:</strong> The malicious code is then copied into the allocated memory.</li>
+        <li><strong>Executing Shellcode:</strong> Finally, the code is executed, often by changing the memory protection to allow execution.</li>
+    </ul>
+    <p>
+        These steps are crucial for any successful execution of shellcode on a Windows system.
+    </p>
+
+    <h2>Processes vs. Threads</h2>
+    <p>
+        In Windows, a process is an instance of a running application that includes its own memory space, while a thread is the smallest unit of execution within a process. Understanding the distinction is important because malicious code may exploit either processes or threads to achieve its goals.
+    </p>
+
+    <h2>Sections of a PE File</h2>
+    <p>
+        A PE file is divided into several sections, each serving a specific purpose. Key sections include:
+    </p>
+    <ul>
+        <li><strong>.text:</strong> This section contains the executable code. It is crucial because this is where the shellcode is often injected and executed.</li>
+        <li><strong>.data:</strong> This section holds initialized data used by the executable. It may be used to store variables and other data structures.</li>
+        <li><strong>.bss:</strong> This section contains uninitialized data that the program will initialize at runtime.</li>
+        <li><strong>.rdata:</strong> This section is used for read-only data such as constants and debug information.</li>
+    </ul>
+    <p>
+        Understanding these sections is important because different parts of the PE file can be targeted for code injection and other malicious activities.
+    </p>
+
+    <h2>Additional Considerations</h2>
+    <p>
+        Other aspects to consider include the use of anti-debugging techniques, process injection methods, and methods for evading detection. Malicious actors may employ various strategies to make their code harder to detect and analyze.
+    </p>
+
+    <p>
+        For further details and examples, explore the rest of the MALD3V project and its resources.
+    </p>
+</body>
+</html>
 
