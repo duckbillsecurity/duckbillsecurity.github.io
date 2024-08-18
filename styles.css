@@ -97,7 +97,6 @@ body {
         width: 100%;
         height: calc(100vh - 50px); /* Adjust content height to avoid overlap with the top bar */
         border: none;
-        padding: 10px; /* Add padding for mobile view */
         box-sizing: border-box; /* Ensure padding is included in the total width/height */
     }
 }
@@ -109,6 +108,7 @@ body {
     overflow: hidden; /* Ensure iframe doesn't extend beyond the container */
     padding: 20px; /* Add padding to the right-hand content */
     box-sizing: border-box; /* Ensure padding is included in the total width */
+    padding-right: 40px; /* Add extra padding to ensure space between text and left frame */
 }
 
 iframe {
@@ -117,5 +117,4 @@ iframe {
     border: none;
     z-index: 0; /* Ensure iframe is behind the menu */
 }
-
 
