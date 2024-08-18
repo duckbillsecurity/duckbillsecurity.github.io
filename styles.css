@@ -27,11 +27,25 @@ body {
     color: white;
     text-decoration: none;
     padding: 10px;
-    text-align: center;
+    text-align: left; /* Left-justified links */
     border-bottom: 1px solid #444;
+    padding-left: 20px; /* Indent child links */
 }
 
 #menu a:hover {
+    background-color: #575757;
+}
+
+.parent-link {
+    font-weight: bold; /* Make parent link more prominent */
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    background-color: #444; /* Slightly different background for parent */
+}
+
+.parent-link:hover {
     background-color: #575757;
 }
 
@@ -64,52 +78,12 @@ iframe {
 }
 
 /* Dropdown Styles */
-.dropdown {
-    position: relative;
-    display: block;
-    text-align: center;
-    border-bottom: 1px solid #444;
-}
-
-.dropbtn {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-}
-
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    min-width: 100%;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    display: none; /* Hide dropdown by default */
 }
 
-.dropdown-content a {
-    color: white;
-    padding: 10px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    border-bottom: 1px solid #444;
-}
-
-.dropdown-content a:hover {
-    background-color: #575757;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #575757;
+.dropdown-content.show {
+    display: block; /* Show dropdown when triggered */
 }
 
 /* Media Query for Mobile */
