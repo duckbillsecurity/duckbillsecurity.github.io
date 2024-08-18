@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALD3V</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="menuToggle" onclick="toggleMenu()">
-        &#9776; <!-- Hamburger icon -->
-        <img src="/logo.png" alt="Logo" id="logo">
+    <div id="menuToggle">
+        <span>&#9776;</span>
+        <img id="logo" src="logo.png" alt="Logo">
     </div>
     <div id="menu">
-        <h1>MALD3V</h1>
-        <a href="0.welcome.html" target="contentFrame">Welcome</a>
+        <h1><a href="0.welcome.html" target="contentFrame">MALD3V</a></h1>
         <a href="1.Basics.html" target="contentFrame">Basics</a>
         <a href="2.Shellcode.html" target="contentFrame">Shellcode</a>
         <a href="3.Memory.Sections.html" target="contentFrame">Memory Sections</a>
@@ -26,12 +25,15 @@
     <div id="main">
         <iframe id="content" name="contentFrame" src="0.welcome.html"></iframe>
     </div>
-
     <script>
-        function toggleMenu() {
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuToggle = document.getElementById('menuToggle');
             var menu = document.getElementById('menu');
-            menu.classList.toggle('show');
-        }
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('show');
+            });
+        });
     </script>
 </body>
 </html>
